@@ -1,0 +1,62 @@
+
+
+<HTML xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Agregar Persona</title>
+</h:head>
+<h:body>
+	<h:form id="form">
+
+		<p:panel id="panel" header="Agregar Persona">
+
+			<p:messages id="msgs" />
+
+			<h:panelGrid columns="3">
+			
+				<h:outputLabel for="nombre" value="Nombre: *" />
+				<p:inputText id="nombre" value="#{personaBean.nombre}"	required="true" label="nombre">
+					<f:validateLength minimum="2" maximum="45" />
+				</p:inputText>
+				<p:message for="nombre" display="icon" />
+
+				<h:outputLabel for="apePaterno" value="Apellido Paterno: *" />
+				<p:inputText id="apePaterno" value="#{personaBean.apePaterno}"  label="apePaterno" required="true">
+					<f:validateLength minimum="2" maximum="45"/>
+					<p:ajax update="msgSurname" event="keyup" />
+				</p:inputText>
+				<p:message for="apePaterno" id="msgSurname" display="icon" />
+				
+				<h:outputLabel for="apeMaterno" value="Apellido Materno: "/>
+				<p:inputText id="apeMaterno" value="#{personaBean.apeMaterno}">
+					<f:validateLength minimum="2" maximum="45"/>
+				</p:inputText>
+				<p:message for="apeMaterno" display="icon" />
+				
+				<h:outputLabel for="email" value="eMail: *"/>
+				<p:inputText id="email" value="#{personaBean.email}" required="true" label="email" type="email">
+					<f:validateLength maximum="45" minimum="2" />
+				
+				</p:inputText>
+				<p:message for="email" display="icon" />
+				
+				<h:outputLabel for="tel" value="Telefono: "></h:outputLabel>
+				<p:inputText id="tel" value="#{personaBean.telefono}" required="true">
+					<f:validateLength maximum="15" minimum="5"/>
+				</p:inputText>
+				<p:message for="tel" display="icon" />
+			</h:panelGrid>
+
+			<p:commandButton id="btn" value="Guardar" update="panel"
+				actionListener="#{personaBean.guardarPersona}" />
+		</p:panel>
+		
+		
+	</h:form>
+	
+</h:body>
+</HTML>
