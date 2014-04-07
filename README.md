@@ -1,4 +1,4 @@
 Spring--Hibernate--Maven---Framework
 ====================================
 
-Ejercicios de java, utilizando Frameworks
+Ejercicios basicos de java, que pueden ayudar a la implementacion de algunos frameworks para el desarrollo Java EE como spring, hibernate utilizando maven 
