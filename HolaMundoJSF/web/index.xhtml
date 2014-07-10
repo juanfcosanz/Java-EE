@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+<h:head>
+	<title>Formulario JSF</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<h:outputLabel for="nombre" value="Nombre:" />
+		<h:inputText id="nombre" value="#{candidato.nombre}" />
+		<h:message for="nombre" />
+		<br />
+		<!-- Enviamos esta peticion hacia el metodo(mB, metodo) -->
+		<h:commandButton action="#{vacanteForm.enviar}" value="Enviar" />
+	</h:form>
+
+</h:body>
+
+</html>
