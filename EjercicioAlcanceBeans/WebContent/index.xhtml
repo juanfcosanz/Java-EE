@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Ejercicio Alcance Beans</title>
+</h:head>
+<h:body>
+	<h:form>
+	1. Alcance Petición: 
+	<h:inputText id="alcancePeticion" value="#{peticion.valor}" />
+		<br />
+	2. Alcance Vista: 
+	<h:inputText id="alcanceVista" value="#{vista.valor}" />
+		<br />
+	3. Alcance Sessión: 
+	<h:inputText id="alcanceSesion" value="#{sesion.valor}" />
+		<br />
+	4. Alcance Aplicacion: 
+	<h:inputText id="alcanceAplicacion" value="#{aplicacion.valor}" />
+		<br />
+
+		<h:commandButton actionListener="#{controlador.cambiarValores}"
+			value="Coloca Valores" />
+		<h:commandButton action="#{controlador.cambiarPagina}"
+			value="Muestra Valores" />
+		<br />
+		<h3>Despliegue de valores en la misma vista</h3>
+		<br />
+		Valor Alcance Peticion: 
+		<span style="background: yellow;">#{peticion.valor}</span>
+		<br />
+		Valor Alcance Vista: 
+		<span style="background: yellow;">#{vista.valor}</span>
+		<br />
+		Valor Alcance Sessión: 
+		<span style="background: yellow;">#{sesion.valor}</span>
+		<br />
+		Valor Alcance Aplicación: 
+		<span style="background: yellow;">#{aplicacion.valor}</span>
+		<br />
+
+
+
+	</h:form>
+</h:body>
+</html>
