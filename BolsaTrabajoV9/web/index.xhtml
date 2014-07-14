@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>BolsaTrabajoV9</title>
+</h:head>
+<h:body>
+	<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+		template="/WEB-INF/plantillas/plantilla.xhtml">
+
+		<ui:define name="content">
+
+			<h:form id="vacanteForm">
+				<h:messages globalOnly="true"></h:messages>
+				<table border="0">
+					<tbody>
+						<tr>
+							<td><h:outputLabel for="nombre"
+									value="#{msgs['vacanteForm.nombre']}"></h:outputLabel></td>
+							<td><h:inputText id="nombre" value="#{candidato.nombre}"
+									required="true" /></td>
+							<td><h:message for="nombre" /></td>
+						</tr>
+						<tr>
+							<td><h:outputLabel for="apellido"
+									value="#{msgs['vacanteForm.apellido']}" /></td>
+							<td><h:inputText id="apellido" value="#{candidato.apellido}"
+									required="true"></h:inputText></td>
+							<td><h:message for="apellido" /></td>
+						</tr>
+						<tr>
+							<td><h:outputLabel for="sueldoDeseado"
+									value="#{msgs['vacanteForm.sueldoDeseado']}" /></td>
+							<td><h:inputText id="sueldoDeseado"
+									value="#{candidato.sueldoDeseado}">
+									<f:validateLongRange minimum="1000" maximum="50000" />
+								</h:inputText></td>
+							<td><h:message for="sueldoDeseado" /></td>
+						</tr>
+						<tr>
+							<td><h:outputLabel for="fechaNacimiento"
+									value="#{msgs['vacanteForm.nacimiento']}" /></td>
+							<td><h:inputText id="fechaNacimiento" required="true"
+									value="#{candidato.fechaNacimiento}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:inputText></td>
+							<td><h:message for="fechaNacimiento" /></td>
+						</tr>
+						<tr>
+							<td><h:outputLabel for="ciudad"
+									value="#{msgs['vacanteForm.ciudad']}" /></td>
+							<td><h:inputText id="ciudad" required="true"
+									value="#{candidato.ciudad}" /></td>
+							<td><h:message for="ciudad" /></td>
+						</tr>
+						<tr>
+							<td><h:outputLabel for="coloniaId"
+									value="#{msgs['vacanteForm.coloniaId']}" /></td>
+							<td><h:selectOneMenu id="coloniaId" required="true"
+									value="#{candidato.coloniaId}">
+									<f:selectItem itemLabel="#{msgs['vacanteForm.seleccione']}"
+										itemValue="" />
+									<f:selectItems value="#{coloniaHelper.selectItems}"></f:selectItems>
+								</h:selectOneMenu></td>
+							<td><h:message for="coloniaId"></h:message></td>
+						</tr>
+						<tr>
+							<td><h:outputLabel for="codigoPostal"
+									value="#{msgs['vacanteForm.codigoPostal']}" /></td>
+							<td><h:inputText id="codigoPostal" immediate="true"
+									onchange="this.form.submit()" required="true"
+									value="#{candidato.codigoPostal}"
+									valueChangeListener="#{vacanteForm.codigoPostalListener}" /></td>
+							<td><h:message for="codigoPostal"></h:message></td>
+						</tr>
+					</tbody>
+				</table>
+				<table>
+					<tr>
+						<td><h:commandLink
+								actionListener="#{vacanteForm.ocultarComentario}"
+								immediate="true" rendered="#{!vacanteForm.comentarioEnviado}"
+								value="#{msgs['vacanteForm.mostrar']}" /> <h:commandLink
+								actionListener="#{vacanteForm.ocultarComentario}"
+								immediate="true" rendered="#{vacanteForm.comentarioEnviado}"
+								value="#{msgs['vacanteForm.ocultar']}" /></td>
+					</tr>
+				</table>
+				<h:panelGroup rendered="#{vacanteForm.comentarioEnviado}">
+					<table>
+						<tr>
+							<td><h:outputLabel for="comentario"
+									value="#{msgs['vacanteForm.comentario']}" /></td>
+						</tr>
+						<tr>
+							<td><h:inputTextarea id="comentario" cols="50" rows="10"
+									value="#{candidato.comentario}" /></td>
+						</tr>
+					</table>
+				</h:panelGroup>
+
+				<h:commandButton value="#{msgs.enviar}"
+					action="#{vacanteForm.enviar}"></h:commandButton>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
